@@ -208,13 +208,6 @@ elif lang == "中文":
         df = pd.DataFrame([response])
         df.to_csv("pet_survey_responses.csv", mode='a', header=False, index=False)
         st.success("✅ 感谢您的参与，您的回答已记录！")
-    st.title("🐾 宠物主人调研 - 芝加哥")
-    st.markdown("""
-    我们是一个正在开发宠物App的小团队，希望为宠物主人提供一站式的健康管理、服务对接和社交平台。
-    这份简短的问卷将帮助我们更好地了解您的需求，以便我们打造出真正实用的产品。
-    感谢您的参与！
-    """)
-    st.markdown("欢迎参与我们的调研，帮助我们打造更好的宠物App，满足您的需求！")
 
 # --- Spanish (Español) full survey ---
 elif lang == "Español":
@@ -311,13 +304,6 @@ elif lang == "Español":
         df = pd.DataFrame([response])
         df.to_csv("pet_survey_responses.csv", mode='a', header=False, index=False)
         st.success("✅ ¡Gracias por tu participación! Tu respuesta ha sido registrada.")
-    st.title("🐾 Encuesta para dueños de mascotas - Chicago")
-    st.markdown("""
-    Somos un pequeño equipo que está desarrollando una aplicación para ayudar a los dueños de mascotas a gestionar la salud, servicios y comunidad de sus mascotas desde un solo lugar.
-    Esta breve encuesta nos permitirá conocer tus necesidades y diseñar una aplicación que realmente funcione para ti.
-    ¡Gracias por participar!
-    """)
-    st.markdown("¡Ayúdanos a diseñar la mejor app para el cuidado de mascotas! Tus respuestas nos ayudarán a entender tus necesidades.")
 
 # --- French (Français) full survey ---
 elif lang == "Français":
@@ -414,10 +400,4 @@ elif lang == "Français":
         df = pd.DataFrame([response])
         df.to_csv("pet_survey_responses.csv", mode='a', header=False, index=False)
         st.success("✅ Merci pour votre participation ! Votre réponse a été enregistrée.")
-    st.title("🐾 Enquête des propriétaires d'animaux - Chicago")
-    st.markdown("""
-    Nous sommes une petite équipe en train de développer une application pour aider les propriétaires d’animaux à gérer la santé, les services et la vie sociale de leurs compagnons en un seul endroit.
-    Ce court sondage nous aidera à mieux comprendre vos besoins pour concevoir une solution qui vous convient vraiment.
-    Merci pour votre participation !
-    """)
-    st.markdown("Aidez-nous à concevoir la meilleure application pour les soins des animaux. Vos réponses nous aideront à comprendre vos besoins.")
+
