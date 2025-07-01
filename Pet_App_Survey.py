@@ -75,7 +75,8 @@ if lang == "English":
         platform_ratings[other_platform] = other_platform_score
 
     notification_pref = st.selectbox("How would you prefer to receive reminders?", ["App Notification", "Text Message", "Email", "Calendar Sync"])
-    open_feedback = st.text_area("Do you have any other suggestions or features you'd like to see?") you be willing to pay monthly for a well-designed pet care app with the features above?", 0, 20, 0, step=1)
+    open_feedback = st.text_area("Do you have any other suggestions or features you'd like to see?")
+    pay_willingness = st.slider("How much would you be willing to pay monthly for a well-designed pet care app with the features above?", 0, 20, 0, step=1)
 
     email = st.text_input("Leave your email if you’d like to get updates about the app or participate in beta testing (optional):")
 
