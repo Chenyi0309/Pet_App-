@@ -3,10 +3,10 @@ import pandas as pd
 import datetime
 
 # Language selection
-lang = st.selectbox("\ud83c\udf10 Choose your language / 选择语言 / Elija su idioma / Choisissez votre langue:", ["English", "中文", "Español", "Français"])
+lang = st.selectbox("🌐 Choose your language / 选择语言 / Elija su idioma / Choisissez votre langue:", ["English", "中文", "Español", "Français"])
 
 if lang == "English":
-    st.title("\ud83d\udc3e Pet Owner Insights Survey - Chicago")
+    st.title("🐾 Pet Owner Insights Survey - Chicago")
     st.markdown("""
     We are a small team working on creating a new app that helps pet owners manage their pets’ health, services, and social life all in one place.
     This short survey will help us understand your needs, so we can design a product that truly works for you.
@@ -99,7 +99,8 @@ if lang == "English":
         }
         df = pd.DataFrame([response])
         df.to_csv("pet_survey_responses.csv", mode='a', header=False, index=False)
-        st.success("\u2705 Thank you for your input! Your response has been recorded.")
+        st.success("✅ Thank you for your input! Your response has been recorded.")
+
 
 elif lang == "中文":
     st.title("🐾 宠物主人调研 - 芝加哥")
