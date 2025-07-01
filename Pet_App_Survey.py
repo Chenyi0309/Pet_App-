@@ -288,7 +288,7 @@ elif lang == "Español":
     notification_pref = st.selectbox("¿Cómo prefieres recibir recordatorios?", ["Notificación de app", "Mensaje de texto", "Correo electrónico", "Sincronización con calendario"])
     open_feedback = st.text_area("¿Tienes otras sugerencias o funciones que te gustaría ver?")
 
-    email = st.text_input("Deja tu correo si deseas recibir actualizaciones o participar en pruebas beta (opcional):") recibir actualizaciones o participar en pruebas beta (opcional):")
+    email = st.text_input("Deja tu correo si deseas recibir actualizaciones o participar en pruebas beta (opcional):")
 
     if st.button("Enviar encuesta"):
         platform_scores = ", ".join([f"{k}: {v}" for k, v in platform_ratings.items()])
