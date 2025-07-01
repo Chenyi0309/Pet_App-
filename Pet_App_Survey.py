@@ -59,7 +59,18 @@ if lang == "English":
     )
     pay_willingness = st.slider("How much would you be willing to pay monthly for a well-designed pet care app with the features above?", 0, 20, 0, step=1, key="pay_slider_en")
 
-    # Optional: User demographics and app satisfaction
+    # Additional questions
+    share_platforms = st.multiselect("Which platforms do you normally use to share pet-related content?", ["Instagram", "TikTok", "Facebook", "Reddit", "YouTube", "WeChat", "Other"])
+    share_content_interest = st.multiselect("What kind of content would you like to see or follow on those platforms?", ["Pet care tips", "Funny videos", "Pet product reviews", "Health updates", "Pet training", "Pet community events", "Other"])
+
+    shopping_places = st.multiselect("Where do you usually shop for your pet's needs?", ["PetSmart", "Chewy", "Amazon", "Walmart", "Local pet stores", "Vet office", "Other"])
+    paid_before = st.radio("Have you ever paid for a pet-related app or subscription?", ["Yes", "No"])
+    share_interest = st.radio("Would you like to share pictures or updates about your pet with other pet owners?", ["Yes", "No", "Maybe"])
+    magic_solution = st.text_input("If you could magically solve one pet-related problem with an app, what would it be?")
+    usage_freq = st.radio("How often do you expect to use a pet care app?", ["Daily", "A few times a week", "Weekly", "Only when needed"])
+    usage_scenarios = st.multiselect("In which situations would you most likely use a pet app?", ["Emergency help", "Regular checkups and tracking", "Shopping for food, toys, or medicine", "Social interaction (photos, events, communities)", "Travel planning with pets"])
+
+    # Demographics and platform ratings
     age = st.selectbox("What is your age range?", ["Under 18", "18–24", "25–34", "35–44", "45–54", "55+"])
     location = st.text_input("Which city do you currently live in?")
     monthly_spend = st.slider("How much do you spend monthly on your pet (food, vet, grooming, etc.)?", 0, 500, 50, step=10)
@@ -76,7 +87,6 @@ if lang == "English":
 
     notification_pref = st.selectbox("How would you prefer to receive reminders?", ["App Notification", "Text Message", "Email", "Calendar Sync"])
     open_feedback = st.text_area("Do you have any other suggestions or features you'd like to see?")
-
     email = st.text_input("Leave your email if you’d like to get updates about the app or participate in beta testing (optional):")
 
     if st.button("Submit Survey"):
@@ -95,7 +105,15 @@ if lang == "English":
             "Monthly Spend": monthly_spend,
             "App Satisfaction Scores": platform_scores,
             "Reminder Preference": notification_pref,
-            "Additional Feedback": open_feedback
+            "Additional Feedback": open_feedback,
+            "Sharing Platforms": ", ".join(share_platforms),
+            "Content Interests": ", ".join(share_content_interest),
+            "Shopping Places": ", ".join(shopping_places),
+            "Paid for App": paid_before,
+            "Willing to Share Pet Content": share_interest,
+            "Magic Solution": magic_solution,
+            "App Usage Frequency": usage_freq,
+            "App Usage Scenarios": ", ".join(usage_scenarios)
         }
         df = pd.DataFrame([response])
         df.to_csv("pet_survey_responses.csv", mode='a', header=False, index=False)
