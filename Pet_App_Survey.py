@@ -3,10 +3,10 @@ import pandas as pd
 import datetime
 
 # Language selection
-lang = st.selectbox("🌐 Choose your language / 选择语言 / Elija su idioma / Choisissez votre langue:", ["English", "中文", "Español", "Français"])
+lang = st.selectbox("\ud83c\udf10 Choose your language / 选择语言 / Elija su idioma / Choisissez votre langue:", ["English", "中文", "Español", "Français"])
 
 if lang == "English":
-    st.title("🐾 Pet Owner Insights Survey - Chicago")
+    st.title("\ud83d\udc3e Pet Owner Insights Survey - Chicago")
     st.markdown("""
     We are a small team working on creating a new app that helps pet owners manage their pets’ health, services, and social life all in one place.
     This short survey will help us understand your needs, so we can design a product that truly works for you.
@@ -57,7 +57,7 @@ if lang == "English":
             "Event organization (pet meetups, competitions)"
         ]
     )
-    pay_willingness = st.slider("How much would you be willing to pay monthly for a well-designed pet care app with the features above?", 0, 20, 0, step=1)
+    pay_willingness = st.slider("How much would you be willing to pay monthly for a well-designed pet care app with the features above?", 0, 20, 0, step=1, key="pay_slider_en")
 
     # Optional: User demographics and app satisfaction
     age = st.selectbox("What is your age range?", ["Under 18", "18–24", "25–34", "35–44", "45–54", "55+"])
@@ -67,16 +67,15 @@ if lang == "English":
     selected_platforms = st.multiselect("Which platforms have you used? Rate them below:", ["Chewy", "Rover", "PetDesk", "Other"])
     platform_ratings = {}
     for platform in selected_platforms:
-        score = st.slider(f"How satisfied are you with {platform}?", 0, 10, 5)
+        score = st.slider(f"How satisfied are you with {platform}?", 0, 10, 5, key=f"platform_{platform}")
         platform_ratings[platform] = score
     if "Other" in selected_platforms:
         other_platform = st.text_input("Please name the other platform:")
-        other_platform_score = st.slider(f"How satisfied are you with {other_platform}?", 0, 10, 5)
+        other_platform_score = st.slider(f"How satisfied are you with {other_platform}?", 0, 10, 5, key="other_platform_score")
         platform_ratings[other_platform] = other_platform_score
 
     notification_pref = st.selectbox("How would you prefer to receive reminders?", ["App Notification", "Text Message", "Email", "Calendar Sync"])
     open_feedback = st.text_area("Do you have any other suggestions or features you'd like to see?")
-    pay_willingness = st.slider("How much would you be willing to pay monthly for a well-designed pet care app with the features above?", 0, 20, 0, step=1)
 
     email = st.text_input("Leave your email if you’d like to get updates about the app or participate in beta testing (optional):")
 
@@ -91,18 +90,6 @@ if lang == "English":
             "Interested Features": ", ".join(features_interest),
             "Willingness to Pay": pay_willingness,
             "Email": email,
-            "Âge": age,
-            "Ville": location,
-            "Dépense mensuelle": monthly_spend,
-            "Notes des plateformes": platform_scores,
-            "Préférence de rappel": notification_pref,
-            "Suggestions supplémentaires": open_feedback,
-            "Âge": age,
-            "Ville": location,
-            "Dépense mensuelle": monthly_spend,
-            "Notes des plateformes": platform_scores,
-            "Préférence de rappel": notification_pref,
-            "Suggestions supplémentaires": open_feedback,
             "Age": age,
             "City": location,
             "Monthly Spend": monthly_spend,
@@ -112,7 +99,7 @@ if lang == "English":
         }
         df = pd.DataFrame([response])
         df.to_csv("pet_survey_responses.csv", mode='a', header=False, index=False)
-        st.success("✅ Thank you for your input! Your response has been recorded.")
+        st.success("\u2705 Thank you for your input! Your response has been recorded.")
 
 elif lang == "中文":
     st.title("🐾 宠物主人调研 - 芝加哥")
