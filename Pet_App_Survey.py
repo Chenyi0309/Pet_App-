@@ -391,7 +391,7 @@ elif lang == "Français":
     notification_pref = st.selectbox("Comment préférez-vous recevoir les rappels ?", ["Notification d'application", "SMS", "Email", "Synchronisation avec calendrier"])
     open_feedback = st.text_area("Avez-vous d'autres suggestions ou des fonctionnalités que vous aimeriez voir ?")
 
-    email = st.text_input("Laissez votre e-mail si vous souhaitez recevoir des mises à jour ou participer à la phase de test (facultatif) :") si vous souhaitez recevoir des mises à jour ou participer à la phase de test (facultatif) :")
+    email = st.text_input("Laissez votre e-mail si vous souhaitez recevoir des mises à jour ou participer à la phase de test (facultatif) :")
 
     if st.button("Soumettre l'enquête"):
         platform_scores = ", ".join([f"{k}: {v}" for k, v in platform_ratings.items()])
