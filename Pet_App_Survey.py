@@ -174,6 +174,17 @@ elif lang == "中文":
     )
     pay_willingness = st.slider("如果这些功能都很好，您每月最多愿意支付多少钱？（单位：美元）", 0, 20, 0, step=1)
 
+    # 新增问题
+    share_platforms = st.multiselect("您通常在哪些平台上分享宠物相关内容？", ["Instagram", "TikTok", "Facebook", "Reddit", "YouTube", "微信", "其他"])
+    share_content_interest = st.multiselect("您希望在这些平台上看到或关注哪些内容？", ["宠物护理小贴士", "搞笑视频", "宠物产品测评", "健康更新", "宠物训练", "宠物社区活动", "其他"])
+
+    shopping_places = st.multiselect("您通常在哪里买宠物相关用品？", ["PetSmart", "Chewy", "Amazon", "Walmart", "本地宠物店", "兽医诊所", "其他"])
+    paid_before = st.radio("您是否曾为宠物相关App或订阅服务付费？", ["是", "否"])
+    share_interest = st.radio("您是否愿意与其他宠物主人分享宠物的照片或动态？", ["愿意", "不愿意", "看情况"])
+    magic_solution = st.text_input("如果可以用一个App神奇地解决一个与宠物相关的问题，您希望解决什么？")
+    usage_freq = st.radio("您希望多频繁使用宠物App？", ["每天", "每周几次", "每周一次", "仅在需要时"])
+    usage_scenarios = st.multiselect("您最可能在哪些场景中使用宠物App？", ["紧急求助", "日常健康记录", "购物（食品/玩具/药品）", "社交互动（照片、活动、社区）", "出行安排"])
+
     age = st.selectbox("您的年龄范围是？", ["18岁以下", "18–24岁", "25–34岁", "35–44岁", "45–54岁", "55岁以上"])
     location = st.text_input("您目前所在的城市是？")
     monthly_spend = st.slider("您每月在宠物上的花费大约是多少？（美元）", 0, 500, 50, step=10)
@@ -209,7 +220,15 @@ elif lang == "中文":
             "月支出": monthly_spend,
             "平台评分": platform_scores,
             "提醒偏好": notification_pref,
-            "其他建议": open_feedback
+            "其他建议": open_feedback,
+            "分享平台": ", ".join(share_platforms),
+            "内容兴趣": ", ".join(share_content_interest),
+            "购物地点": ", ".join(shopping_places),
+            "是否付费": paid_before,
+            "是否愿意分享宠物": share_interest,
+            "希望解决的问题": magic_solution,
+            "使用频率": usage_freq,
+            "使用场景": ", ".join(usage_scenarios)
         }
         df = pd.DataFrame([response])
         df.to_csv("pet_survey_responses.csv", mode='a', header=False, index=False)
@@ -270,6 +289,16 @@ elif lang == "Español":
     )
     pay_willingness = st.slider("¿Cuánto estarías dispuesto a pagar al mes por una app bien diseñada con las funciones anteriores?", 0, 20, 0, step=1)
 
+    # Nuevas preguntas
+    share_platforms = st.multiselect("¿En qué plataformas sueles compartir contenido relacionado con mascotas?", ["Instagram", "TikTok", "Facebook", "Reddit", "YouTube", "WeChat", "Otro"])
+    share_content_interest = st.multiselect("¿Qué tipo de contenido te gustaría ver o seguir en esas plataformas?", ["Consejos de cuidado", "Videos graciosos", "Reseñas de productos", "Actualizaciones de salud", "Entrenamiento de mascotas", "Eventos comunitarios de mascotas", "Otro"])
+    shopping_places = st.multiselect("¿Dónde sueles comprar cosas para tu mascota?", ["PetSmart", "Chewy", "Amazon", "Walmart", "Tiendas locales", "Clínica veterinaria", "Otro"])
+    paid_before = st.radio("¿Alguna vez has pagado por una app o suscripción relacionada con mascotas?", ["Sí", "No"])
+    share_interest = st.radio("¿Te gustaría compartir fotos o actualizaciones de tu mascota con otros dueños?", ["Sí", "No", "Tal vez"])
+    magic_solution = st.text_input("Si pudieras resolver mágicamente un problema relacionado con tu mascota mediante una app, ¿cuál sería?")
+    usage_freq = st.radio("¿Con qué frecuencia usarías una app de cuidado de mascotas?", ["Diariamente", "Varias veces a la semana", "Semanalmente", "Solo cuando sea necesario"])
+    usage_scenarios = st.multiselect("¿En qué situaciones usarías más probablemente una app para mascotas?", ["Emergencias", "Seguimiento y chequeos regulares", "Compras (comida, juguetes, medicina)", "Interacción social (fotos, eventos, comunidades)", "Planeación de viajes con mascotas"])
+
     age = st.selectbox("¿Cuál es tu rango de edad?", ["Menos de 18", "18–24", "25–34", "35–44", "45–54", "55+"])
     location = st.text_input("¿En qué ciudad vives actualmente?")
     monthly_spend = st.slider("¿Cuánto gastas mensualmente en tu mascota (comida, veterinario, grooming, etc.)?", 0, 500, 50, step=10)
@@ -286,7 +315,6 @@ elif lang == "Español":
 
     notification_pref = st.selectbox("¿Cómo prefieres recibir recordatorios?", ["Notificación de app", "Mensaje de texto", "Correo electrónico", "Sincronización con calendario"])
     open_feedback = st.text_area("¿Tienes otras sugerencias o funciones que te gustaría ver?")
-
     email = st.text_input("Deja tu correo si deseas recibir actualizaciones o participar en pruebas beta (opcional):")
 
     if st.button("Enviar encuesta"):
@@ -305,7 +333,15 @@ elif lang == "Español":
             "Gasto mensual": monthly_spend,
             "Puntuación de plataformas": platform_scores,
             "Preferencia de notificación": notification_pref,
-            "Sugerencias adicionales": open_feedback
+            "Sugerencias adicionales": open_feedback,
+            "Plataformas donde comparte contenido": ", ".join(share_platforms),
+            "Tipo de contenido que sigue": ", ".join(share_content_interest),
+            "Lugares donde compra": ", ".join(shopping_places),
+            "Ha pagado por app": paid_before,
+            "Desea compartir contenido": share_interest,
+            "Solución mágica": magic_solution,
+            "Frecuencia de uso de app": usage_freq,
+            "Escenarios de uso": ", ".join(usage_scenarios)
         }
         df = pd.DataFrame([response])
         df.to_csv("pet_survey_responses.csv", mode='a', header=False, index=False)
@@ -319,7 +355,7 @@ elif lang == "Français":
     Ce court sondage nous aidera à mieux comprendre vos besoins pour concevoir une solution qui vous convient vraiment.
     Merci pour votre participation !
     """)
-    
+
     pet_type = st.radio("Quel type d'animal avez-vous ?", ["Chien", "Chat", "Lapin", "Oiseau", "Autre"])
     if pet_type == "Autre":
         other_pet = st.text_input("Veuillez spécifier le type d'animal :")
@@ -366,6 +402,16 @@ elif lang == "Français":
     )
     pay_willingness = st.slider("Combien seriez-vous prêt à payer par mois pour une application bien conçue avec les fonctionnalités ci-dessus ?", 0, 20, 0, step=1)
 
+    # Nouvelles questions
+    share_platforms = st.multiselect("Sur quelles plateformes partagez-vous généralement du contenu lié aux animaux ?", ["Instagram", "TikTok", "Facebook", "Reddit", "YouTube", "WeChat", "Autre"])
+    share_content_interest = st.multiselect("Quel type de contenu souhaitez-vous voir ou suivre sur ces plateformes ?", ["Conseils de soins", "Vidéos amusantes", "Avis sur des produits", "Mises à jour de santé", "Dressage", "Événements communautaires pour animaux", "Autre"])
+    shopping_places = st.multiselect("Où achetez-vous habituellement les produits pour votre animal ?", ["PetSmart", "Chewy", "Amazon", "Walmart", "Magasins locaux", "Cabinet vétérinaire", "Autre"])
+    paid_before = st.radio("Avez-vous déjà payé pour une application ou un abonnement lié aux animaux ?", ["Oui", "Non"])
+    share_interest = st.radio("Souhaitez-vous partager des photos ou des mises à jour de votre animal avec d'autres propriétaires ?", ["Oui", "Non", "Peut-être"])
+    magic_solution = st.text_input("Si une application pouvait magiquement résoudre un problème lié à votre animal, lequel serait-ce ?")
+    usage_freq = st.radio("À quelle fréquence pensez-vous utiliser une application de soins pour animaux ?", ["Tous les jours", "Quelques fois par semaine", "Chaque semaine", "Uniquement en cas de besoin"])
+    usage_scenarios = st.multiselect("Dans quelles situations seriez-vous le plus susceptible d'utiliser une application pour animaux ?", ["Urgences", "Suivi et contrôles réguliers", "Achats (nourriture, jouets, médicaments)", "Interaction sociale (photos, événements, communauté)", "Planification de voyages avec des animaux"])
+
     age = st.selectbox("Quel est votre groupe d'âge ?", ["Moins de 18 ans", "18–24 ans", "25–34 ans", "35–44 ans", "45–54 ans", "55+ ans"])
     location = st.text_input("Dans quelle ville habitez-vous actuellement ?")
     monthly_spend = st.slider("Combien dépensez-vous par mois pour votre animal (nourriture, vétérinaire, toilettage, etc.) ?", 0, 500, 50, step=10)
@@ -382,7 +428,6 @@ elif lang == "Français":
 
     notification_pref = st.selectbox("Comment préférez-vous recevoir les rappels ?", ["Notification d'application", "SMS", "Email", "Synchronisation avec calendrier"])
     open_feedback = st.text_area("Avez-vous d'autres suggestions ou des fonctionnalités que vous aimeriez voir ?")
-
     email = st.text_input("Laissez votre e-mail si vous souhaitez recevoir des mises à jour ou participer à la phase de test (facultatif) :")
 
     if st.button("Soumettre l'enquête"):
@@ -401,9 +446,16 @@ elif lang == "Français":
             "Dépense mensuelle": monthly_spend,
             "Notes des plateformes": platform_scores,
             "Préférence de rappel": notification_pref,
-            "Suggestions supplémentaires": open_feedback
+            "Suggestions supplémentaires": open_feedback,
+            "Plateformes de partage": ", ".join(share_platforms),
+            "Contenus préférés": ", ".join(share_content_interest),
+            "Lieux d'achat": ", ".join(shopping_places),
+            "A déjà payé pour app": paid_before,
+            "Souhaite partager": share_interest,
+            "Solution magique": magic_solution,
+            "Fréquence d'utilisation": usage_freq,
+            "Scénarios d'utilisation": ", ".join(usage_scenarios)
         }
         df = pd.DataFrame([response])
         df.to_csv("pet_survey_responses.csv", mode='a', header=False, index=False)
         st.success("✅ Merci pour votre participation ! Votre réponse a été enregistrée.")
-
