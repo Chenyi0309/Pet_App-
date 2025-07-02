@@ -60,7 +60,7 @@ if lang == "English":
     pay_willingness = st.slider("How much would you be willing to pay monthly for a well-designed pet care app with the features above?", 0, 20, 0, step=1, key="pay_slider_en")
 
     # Additional questions
-    share_platforms = st.multiselect("Which platforms do you normally use to share pet-related content?", ["Instagram", "TikTok", "Facebook", "Reddit", "YouTube", "WeChat", "Other"])
+    share_platforms = st.multiselect("Which platforms do you normally use to share pet-related content?", ["Instagram", "TikTok", "Facebook", "Reddit", "YouTube", "WeChat",  "Rednote", "Other"])
     share_content_interest = st.multiselect("What kind of content would you like to see or follow on those platforms?", ["Pet care tips", "Funny videos", "Pet product reviews", "Health updates", "Pet training", "Pet community events", "Other"])
 
     shopping_places = st.multiselect("Where do you usually shop for your pet's needs?", ["PetSmart", "Chewy", "Amazon", "Walmart", "Local pet stores", "Vet office", "Other"])
@@ -175,7 +175,7 @@ elif lang == "中文":
     pay_willingness = st.slider("如果这些功能都很好，您每月最多愿意支付多少钱？（单位：美元）", 0, 20, 0, step=1)
 
     # 新增问题
-    share_platforms = st.multiselect("您通常在哪些平台上分享宠物相关内容？", ["Instagram", "TikTok", "Facebook", "Reddit", "YouTube", "微信", "其他"])
+    share_platforms = st.multiselect("您通常在哪些平台上分享宠物相关内容？", ["Instagram", "TikTok", "Facebook", "Reddit", "YouTube", "微信", "小红书", "其他"])
     share_content_interest = st.multiselect("您希望在这些平台上看到或关注哪些内容？", ["宠物护理小贴士", "搞笑视频", "宠物产品测评", "健康更新", "宠物训练", "宠物社区活动", "其他"])
 
     shopping_places = st.multiselect("您通常在哪里买宠物相关用品？", ["PetSmart", "Chewy", "Amazon", "Walmart", "本地宠物店", "兽医诊所", "其他"])
