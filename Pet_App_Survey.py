@@ -129,7 +129,23 @@ if lang == "English":
     open_feedback = st.text_area("Do you have any other suggestions or features you'd like to see?")
     email = st.text_input("Leave your email if you’d like to get updates about the app or participate in beta testing (optional):")
 
-    if st.button("Submit Survey"):
+ # 👇 反机器人校验 + 重复提交检测（30秒冷却）
+is_human = st.radio("Are you a robot?", ["No, I am human", "Yes, I am a robot"], index=0)
+
+if "last_submit_time" not in st.session_state:
+    st.session_state.last_submit_time = 0
+
+cooldown = 30  # cooldown in seconds
+current_time = datetime.datetime.now().timestamp()
+
+if st.button("Submit Survey"):
+    if current_time - st.session_state.last_submit_time < cooldown:
+        st.warning("⚠️ Please do not submit multiple times in a short period. Try again later.")
+    elif is_human != "No, I am human":
+        st.error("❌ Please confirm you are not a robot.")
+    else:
+        st.session_state.last_submit_time = current_time
+
         platform_scores = ", ".join([f"{k}: {v}" for k, v in platform_ratings.items()])
         response = {
             "Timestamp": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
@@ -155,21 +171,17 @@ if lang == "English":
             "App Usage Frequency": usage_freq,
             "App Usage Scenarios": ", ".join(usage_scenarios)
         }
-    
+
         # ✅ 写入 Google Sheets 替代 CSV
-        import streamlit as st
-        from google.oauth2.service_account import Credentials
-        import gspread
-    
         scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
         creds = Credentials.from_service_account_info(st.secrets["gcp_service_account"], scopes=scope)
         client = gspread.authorize(creds)
         sheet = client.open("Pet Survey Responses").worksheet("English")
         response_serialized = {k: str(v) if not isinstance(v, str) else v for k, v in response.items()}
         sheet.append_row(list(response_serialized.values()))
-    
-    
+
         st.success("✅ Thank you for your input! Your response has been recorded.")
+        
     st.markdown(
         "<hr style='margin-top: 40px;'>"
         "<div style='text-align: center; font-size: 12px; color: gray;'>"
