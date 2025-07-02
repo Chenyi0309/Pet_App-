@@ -129,13 +129,13 @@ if lang == "English":
     open_feedback = st.text_area("Do you have any other suggestions or features you'd like to see?")
     email = st.text_input("Leave your email if you’d like to get updates about the app or participate in beta testing (optional):")
 
-     # 👇 反机器人校验 + 重复提交检测（30秒冷却）
+     # 👇 反机器人校验 + 重复提交检测（60秒冷却）
     is_human = st.radio("Are you a robot?", ["No, I am human", "Yes, I am a robot"], index=0)
     
     if "last_submit_time" not in st.session_state:
         st.session_state.last_submit_time = 0
     
-    cooldown = 30  # cooldown in seconds
+    cooldown = 60  # cooldown in seconds
     current_time = datetime.datetime.now().timestamp()
     
     if st.button("Submit Survey"):
@@ -303,13 +303,13 @@ elif lang == "中文":
 
     email = st.text_input("如果您希望收到我们的产品更新或参与内测，可留下您的邮箱（选填）：")
 
-    # 👇 反机器人校验 + 重复提交检测（30秒冷却）
+    # 👇 反机器人校验 + 重复提交检测（60秒冷却）
     is_human = st.radio("你是机器人吗？", ["不是，我是人类", "是的，我是机器人"], index=0)
     
     if "last_submit_time" not in st.session_state:
         st.session_state.last_submit_time = 0
     
-    cooldown = 30  # 冷却时间，单位秒
+    cooldown = 60  # 冷却时间，单位秒
     current_time = datetime.datetime.now().timestamp()
     
     if st.button("提交问卷"):
@@ -478,13 +478,13 @@ elif lang == "Español":
     open_feedback = st.text_area("¿Tienes otras sugerencias o funciones que te gustaría ver?")
     email = st.text_input("Deja tu correo si deseas recibir actualizaciones o participar en pruebas beta (opcional):")
 
-    # 👇 Verificación antirrobot + Enfriamiento de 30 segundos
+    # 👇 Verificación antirrobot + Enfriamiento de 60 segundos
     is_human = st.radio("¿Eres un robot?", ["No, soy humano", "Sí, soy un robot"], index=0)
     
     if "last_submit_time" not in st.session_state:
         st.session_state.last_submit_time = 0
     
-    cooldown = 30  # segundos
+    cooldown = 60  # segundos
     current_time = datetime.datetime.now().timestamp()
 
     if st.button("Enviar encuesta"):
@@ -652,13 +652,13 @@ elif lang == "Français":
     open_feedback = st.text_area("Avez-vous d'autres suggestions ou des fonctionnalités que vous aimeriez voir ?")
     email = st.text_input("Laissez votre e-mail si vous souhaitez recevoir des mises à jour ou participer à la phase de test (facultatif) :")
 
-    # 👇 Vérification anti-robot + Délai de soumission (30 secondes)
+    # 👇 Vérification anti-robot + Délai de soumission (60 secondes)
     is_human = st.radio("Êtes-vous un robot ?", ["Non, je suis humain", "Oui, je suis un robot"], index=0)
     
     if "last_submit_time" not in st.session_state:
         st.session_state.last_submit_time = 0
     
-    cooldown = 30  # secondes
+    cooldown = 60  # secondes
     current_time = datetime.datetime.now().timestamp()
 
     if st.button("Soumettre l'enquête"):
