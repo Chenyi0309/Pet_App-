@@ -91,47 +91,47 @@ if lang == "English":
     open_feedback = st.text_area("Do you have any other suggestions or features you'd like to see?")
     email = st.text_input("Leave your email if you’d like to get updates about the app or participate in beta testing (optional):")
 
-if st.button("Submit Survey"):
-    platform_scores = ", ".join([f"{k}: {v}" for k, v in platform_ratings.items()])
-    response = {
-        "Timestamp": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-        "Pet Type": other_pet,
-        "Number of Pets": num_pets,
-        "Current Apps": ", ".join(current_apps) + (f"; Other: {other_apps}" if other_apps else ""),
-        "Pain Points": ", ".join(pain_points) + (f"; Other: {other_pain}" if other_pain else ""),
-        "Interested Features": ", ".join(features_interest),
-        "Willingness to Pay": pay_willingness,
-        "Email": email,
-        "Age": age,
-        "City": location,
-        "Monthly Spend": monthly_spend,
-        "App Satisfaction Scores": platform_scores,
-        "Reminder Preference": notification_pref,
-        "Additional Feedback": open_feedback,
-        "Sharing Platforms": ", ".join(share_platforms),
-        "Content Interests": ", ".join(share_content_interest),
-        "Shopping Places": ", ".join(shopping_places),
-        "Paid for App": paid_before,
-        "Willing to Share Pet Content": share_interest,
-        "Magic Solution": magic_solution,
-        "App Usage Frequency": usage_freq,
-        "App Usage Scenarios": ", ".join(usage_scenarios)
-    }
-
-    # ✅ 写入 Google Sheets 替代 CSV
-    import streamlit as st
-    from google.oauth2.service_account import Credentials
-    import gspread
-
-    scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
-    creds = Credentials.from_service_account_info(st.secrets["gcp_service_account"], scopes=scope)
-    client = gspread.authorize(creds)
-    sheet = client.open("Pet Survey Responses").worksheet("English")
-    response_serialized = {k: str(v) if not isinstance(v, str) else v for k, v in response.items()}
-    sheet.append_row(list(response_serialized.values()))
-
-
-    st.success("✅ Thank you for your input! Your response has been recorded.")
+    if st.button("Submit Survey"):
+        platform_scores = ", ".join([f"{k}: {v}" for k, v in platform_ratings.items()])
+        response = {
+            "Timestamp": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "Pet Type": other_pet,
+            "Number of Pets": num_pets,
+            "Current Apps": ", ".join(current_apps) + (f"; Other: {other_apps}" if other_apps else ""),
+            "Pain Points": ", ".join(pain_points) + (f"; Other: {other_pain}" if other_pain else ""),
+            "Interested Features": ", ".join(features_interest),
+            "Willingness to Pay": pay_willingness,
+            "Email": email,
+            "Age": age,
+            "City": location,
+            "Monthly Spend": monthly_spend,
+            "App Satisfaction Scores": platform_scores,
+            "Reminder Preference": notification_pref,
+            "Additional Feedback": open_feedback,
+            "Sharing Platforms": ", ".join(share_platforms),
+            "Content Interests": ", ".join(share_content_interest),
+            "Shopping Places": ", ".join(shopping_places),
+            "Paid for App": paid_before,
+            "Willing to Share Pet Content": share_interest,
+            "Magic Solution": magic_solution,
+            "App Usage Frequency": usage_freq,
+            "App Usage Scenarios": ", ".join(usage_scenarios)
+        }
+    
+        # ✅ 写入 Google Sheets 替代 CSV
+        import streamlit as st
+        from google.oauth2.service_account import Credentials
+        import gspread
+    
+        scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
+        creds = Credentials.from_service_account_info(st.secrets["gcp_service_account"], scopes=scope)
+        client = gspread.authorize(creds)
+        sheet = client.open("Pet Survey Responses").worksheet("English")
+        response_serialized = {k: str(v) if not isinstance(v, str) else v for k, v in response.items()}
+        sheet.append_row(list(response_serialized.values()))
+    
+    
+        st.success("✅ Thank you for your input! Your response has been recorded.")
 
 
 elif lang == "中文":
@@ -218,47 +218,47 @@ elif lang == "中文":
 
     email = st.text_input("如果您希望收到我们的产品更新或参与内测，可留下您的邮箱（选填）：")
 
-if st.button("提交调查"):
-    platform_scores = ", ".join([f"{k}: {v}" for k, v in platform_ratings.items()])
-    response = {
-        "时间戳": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-        "宠物类型": other_pet,
-        "宠物数量": num_pets,
-        "当前使用的App": ", ".join(current_apps) + (f"；其他：{other_apps}" if other_apps else ""),
-        "烦恼点": ", ".join(pain_points) + (f"；其他：{other_pain}" if other_pain else ""),
-        "感兴趣的功能": ", ".join(features_interest),
-        "愿意支付金额": pay_willingness,
-        "邮箱": email,
-        "年龄": age,
-        "城市": location,
-        "月支出": monthly_spend,
-        "平台评分": platform_scores,
-        "提醒偏好": notification_pref,
-        "其他建议": open_feedback,
-        "分享平台": ", ".join(share_platforms),
-        "内容兴趣": ", ".join(share_content_interest),
-        "购物地点": ", ".join(shopping_places),
-        "是否付费": paid_before,
-        "是否愿意分享宠物": share_interest,
-        "希望解决的问题": magic_solution,
-        "使用频率": usage_freq,
-        "使用场景": ", ".join(usage_scenarios)
-    }
-
-    # ✅ 替换为写入 Google Sheets 的代码
-    import streamlit as st
-    from google.oauth2.service_account import Credentials
-    import gspread
-
-    scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
-    creds = Credentials.from_service_account_info(st.secrets["gcp_service_account"], scopes=scope)
-    client = gspread.authorize(creds)
-
-    sheet = client.open("Pet Survey Responses").worksheet("中文")
-    response_serialized = {k: str(v) if not isinstance(v, str) else v for k, v in response.items()}
-    sheet.append_row(list(response_serialized.values()))
-
-    st.success("✅ 感谢您的参与，您的回答已记录！")
+    if st.button("提交调查"):
+        platform_scores = ", ".join([f"{k}: {v}" for k, v in platform_ratings.items()])
+        response = {
+            "时间戳": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "宠物类型": other_pet,
+            "宠物数量": num_pets,
+            "当前使用的App": ", ".join(current_apps) + (f"；其他：{other_apps}" if other_apps else ""),
+            "烦恼点": ", ".join(pain_points) + (f"；其他：{other_pain}" if other_pain else ""),
+            "感兴趣的功能": ", ".join(features_interest),
+            "愿意支付金额": pay_willingness,
+            "邮箱": email,
+            "年龄": age,
+            "城市": location,
+            "月支出": monthly_spend,
+            "平台评分": platform_scores,
+            "提醒偏好": notification_pref,
+            "其他建议": open_feedback,
+            "分享平台": ", ".join(share_platforms),
+            "内容兴趣": ", ".join(share_content_interest),
+            "购物地点": ", ".join(shopping_places),
+            "是否付费": paid_before,
+            "是否愿意分享宠物": share_interest,
+            "希望解决的问题": magic_solution,
+            "使用频率": usage_freq,
+            "使用场景": ", ".join(usage_scenarios)
+        }
+    
+        # ✅ 替换为写入 Google Sheets 的代码
+        import streamlit as st
+        from google.oauth2.service_account import Credentials
+        import gspread
+    
+        scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
+        creds = Credentials.from_service_account_info(st.secrets["gcp_service_account"], scopes=scope)
+        client = gspread.authorize(creds)
+    
+        sheet = client.open("Pet Survey Responses").worksheet("中文")
+        response_serialized = {k: str(v) if not isinstance(v, str) else v for k, v in response.items()}
+        sheet.append_row(list(response_serialized.values()))
+    
+        st.success("✅ 感谢您的参与，您的回答已记录！")
 
 # --- Spanish (Español) full survey ---
 elif lang == "Español":
@@ -343,46 +343,46 @@ elif lang == "Español":
     open_feedback = st.text_area("¿Tienes otras sugerencias o funciones que te gustaría ver?")
     email = st.text_input("Deja tu correo si deseas recibir actualizaciones o participar en pruebas beta (opcional):")
 
-if st.button("Enviar encuesta"):
-    platform_scores = ", ".join([f"{k}: {v}" for k, v in platform_ratings.items()])
-    response = {
-        "Marca de tiempo": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-        "Tipo de mascota": other_pet,
-        "Número de mascotas": num_pets,
-        "Apps actuales": ", ".join(current_apps) + (f"; Otro: {other_apps}" if other_apps else ""),
-        "Puntos de dolor": ", ".join(pain_points) + (f"; Otro: {other_pain}" if other_pain else ""),
-        "Funciones deseadas": ", ".join(features_interest),
-        "Pago mensual posible": pay_willingness,
-        "Correo": email,
-        "Edad": age,
-        "Ciudad": location,
-        "Gasto mensual": monthly_spend,
-        "Puntuación de plataformas": platform_scores,
-        "Preferencia de notificación": notification_pref,
-        "Sugerencias adicionales": open_feedback,
-        "Plataformas donde comparte contenido": ", ".join(share_platforms),
-        "Tipo de contenido que sigue": ", ".join(share_content_interest),
-        "Lugares donde compra": ", ".join(shopping_places),
-        "Ha pagado por app": paid_before,
-        "Desea compartir contenido": share_interest,
-        "Solución mágica": magic_solution,
-        "Frecuencia de uso de app": usage_freq,
-        "Escenarios de uso": ", ".join(usage_scenarios)
-    }
-
-    # ✅ Google Sheets 追加写入
-    import streamlit as st
-    from google.oauth2.service_account import Credentials
-    import gspread
-
-    scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
-    creds = Credentials.from_service_account_info(st.secrets["gcp_service_account"], scopes=scope)
-    client = gspread.authorize(creds)
-    sheet = client.open("Pet Survey Responses").worksheet("Español")
-    response_serialized = {k: str(v) if not isinstance(v, str) else v for k, v in response.items()}
-    sheet.append_row(list(response_serialized.values()))
-
-    st.success("✅ ¡Gracias por tu participación! Tu respuesta ha sido registrada.")
+    if st.button("Enviar encuesta"):
+        platform_scores = ", ".join([f"{k}: {v}" for k, v in platform_ratings.items()])
+        response = {
+            "Marca de tiempo": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "Tipo de mascota": other_pet,
+            "Número de mascotas": num_pets,
+            "Apps actuales": ", ".join(current_apps) + (f"; Otro: {other_apps}" if other_apps else ""),
+            "Puntos de dolor": ", ".join(pain_points) + (f"; Otro: {other_pain}" if other_pain else ""),
+            "Funciones deseadas": ", ".join(features_interest),
+            "Pago mensual posible": pay_willingness,
+            "Correo": email,
+            "Edad": age,
+            "Ciudad": location,
+            "Gasto mensual": monthly_spend,
+            "Puntuación de plataformas": platform_scores,
+            "Preferencia de notificación": notification_pref,
+            "Sugerencias adicionales": open_feedback,
+            "Plataformas donde comparte contenido": ", ".join(share_platforms),
+            "Tipo de contenido que sigue": ", ".join(share_content_interest),
+            "Lugares donde compra": ", ".join(shopping_places),
+            "Ha pagado por app": paid_before,
+            "Desea compartir contenido": share_interest,
+            "Solución mágica": magic_solution,
+            "Frecuencia de uso de app": usage_freq,
+            "Escenarios de uso": ", ".join(usage_scenarios)
+        }
+    
+        # ✅ Google Sheets 追加写入
+        import streamlit as st
+        from google.oauth2.service_account import Credentials
+        import gspread
+    
+        scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
+        creds = Credentials.from_service_account_info(st.secrets["gcp_service_account"], scopes=scope)
+        client = gspread.authorize(creds)
+        sheet = client.open("Pet Survey Responses").worksheet("Español")
+        response_serialized = {k: str(v) if not isinstance(v, str) else v for k, v in response.items()}
+        sheet.append_row(list(response_serialized.values()))
+    
+        st.success("✅ ¡Gracias por tu participación! Tu respuesta ha sido registrada.")
 
 # --- French (Français) full survey ---
 elif lang == "Français":
@@ -467,43 +467,43 @@ elif lang == "Français":
     open_feedback = st.text_area("Avez-vous d'autres suggestions ou des fonctionnalités que vous aimeriez voir ?")
     email = st.text_input("Laissez votre e-mail si vous souhaitez recevoir des mises à jour ou participer à la phase de test (facultatif) :")
 
-if st.button("Soumettre l'enquête"):
-    platform_scores = ", ".join([f"{k}: {v}" for k, v in platform_ratings.items()])
-    response = {
-        "Horodatage": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-        "Type d'animal": other_pet,
-        "Nombre d'animaux": num_pets,
-        "Applications utilisées": ", ".join(current_apps) + (f"; Autre: {other_apps}" if other_apps else ""),
-        "Points de douleur": ", ".join(pain_points) + (f"; Autre: {other_pain}" if other_pain else ""),
-        "Fonctionnalités souhaitées": ", ".join(features_interest),
-        "Disposé à payer": pay_willingness,
-        "Email": email,
-        "Âge": age,
-        "Ville": location,
-        "Dépense mensuelle": monthly_spend,
-        "Notes des plateformes": platform_scores,
-        "Préférence de rappel": notification_pref,
-        "Suggestions supplémentaires": open_feedback,
-        "Plateformes de partage": ", ".join(share_platforms),
-        "Contenus préférés": ", ".join(share_content_interest),
-        "Lieux d'achat": ", ".join(shopping_places),
-        "A déjà payé pour app": paid_before,
-        "Souhaite partager": share_interest,
-        "Solution magique": magic_solution,
-        "Fréquence d'utilisation": usage_freq,
-        "Scénarios d'utilisation": ", ".join(usage_scenarios)
-    }
-
-    # ✅ Google Sheets 上传代码
-    import streamlit as st
-    from google.oauth2.service_account import Credentials
-    import gspread
-
-    scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
-    creds = Credentials.from_service_account_info(st.secrets["gcp_service_account"], scopes=scope)
-    client = gspread.authorize(creds)
-    sheet = client.open("Pet Survey Responses").worksheet("Français")
-    response_serialized = {k: str(v) if not isinstance(v, str) else v for k, v in response.items()}
-    sheet.append_row(list(response_serialized.values()))
-
-    st.success("✅ Merci pour votre participation ! Votre réponse a été enregistrée.")
+    if st.button("Soumettre l'enquête"):
+        platform_scores = ", ".join([f"{k}: {v}" for k, v in platform_ratings.items()])
+        response = {
+            "Horodatage": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "Type d'animal": other_pet,
+            "Nombre d'animaux": num_pets,
+            "Applications utilisées": ", ".join(current_apps) + (f"; Autre: {other_apps}" if other_apps else ""),
+            "Points de douleur": ", ".join(pain_points) + (f"; Autre: {other_pain}" if other_pain else ""),
+            "Fonctionnalités souhaitées": ", ".join(features_interest),
+            "Disposé à payer": pay_willingness,
+            "Email": email,
+            "Âge": age,
+            "Ville": location,
+            "Dépense mensuelle": monthly_spend,
+            "Notes des plateformes": platform_scores,
+            "Préférence de rappel": notification_pref,
+            "Suggestions supplémentaires": open_feedback,
+            "Plateformes de partage": ", ".join(share_platforms),
+            "Contenus préférés": ", ".join(share_content_interest),
+            "Lieux d'achat": ", ".join(shopping_places),
+            "A déjà payé pour app": paid_before,
+            "Souhaite partager": share_interest,
+            "Solution magique": magic_solution,
+            "Fréquence d'utilisation": usage_freq,
+            "Scénarios d'utilisation": ", ".join(usage_scenarios)
+        }
+    
+        # ✅ Google Sheets 上传代码
+        import streamlit as st
+        from google.oauth2.service_account import Credentials
+        import gspread
+    
+        scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
+        creds = Credentials.from_service_account_info(st.secrets["gcp_service_account"], scopes=scope)
+        client = gspread.authorize(creds)
+        sheet = client.open("Pet Survey Responses").worksheet("Français")
+        response_serialized = {k: str(v) if not isinstance(v, str) else v for k, v in response.items()}
+        sheet.append_row(list(response_serialized.values()))
+    
+        st.success("✅ Merci pour votre participation ! Votre réponse a été enregistrée.")
