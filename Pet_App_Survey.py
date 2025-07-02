@@ -129,58 +129,58 @@ if lang == "English":
     open_feedback = st.text_area("Do you have any other suggestions or features you'd like to see?")
     email = st.text_input("Leave your email if you’d like to get updates about the app or participate in beta testing (optional):")
 
- # 👇 反机器人校验 + 重复提交检测（30秒冷却）
-is_human = st.radio("Are you a robot?", ["No, I am human", "Yes, I am a robot"], index=0)
-
-if "last_submit_time" not in st.session_state:
-    st.session_state.last_submit_time = 0
-
-cooldown = 30  # cooldown in seconds
-current_time = datetime.datetime.now().timestamp()
-
-if st.button("Submit Survey"):
-    if current_time - st.session_state.last_submit_time < cooldown:
-        st.warning("⚠️ Please do not submit multiple times in a short period. Try again later.")
-    elif is_human != "No, I am human":
-        st.error("❌ Please confirm you are not a robot.")
-    else:
-        st.session_state.last_submit_time = current_time
-
-        platform_scores = ", ".join([f"{k}: {v}" for k, v in platform_ratings.items()])
-        response = {
-            "Timestamp": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-            "Pet Type": other_pet,
-            "Number of Pets": num_pets,
-            "Current Apps": ", ".join(current_apps) + (f"; Other: {other_apps}" if other_apps else ""),
-            "Pain Points": ", ".join(pain_points) + (f"; Other: {other_pain}" if other_pain else ""),
-            "Interested Features": ", ".join(features_interest),
-            "Willingness to Pay": pay_willingness,
-            "Email": email,
-            "Age": age,
-            "City": location,
-            "Monthly Spend": monthly_spend,
-            "App Satisfaction Scores": platform_scores,
-            "Reminder Preference": notification_pref,
-            "Additional Feedback": open_feedback,
-            "Sharing Platforms": ", ".join(share_platforms),
-            "Content Interests": ", ".join(share_content_interest),
-            "Shopping Places": ", ".join(shopping_places),
-            "Paid for App": paid_before,
-            "Willing to Share Pet Content": share_interest,
-            "Magic Solution": magic_solution,
-            "App Usage Frequency": usage_freq,
-            "App Usage Scenarios": ", ".join(usage_scenarios)
-        }
-
-        # ✅ 写入 Google Sheets 替代 CSV
-        scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
-        creds = Credentials.from_service_account_info(st.secrets["gcp_service_account"], scopes=scope)
-        client = gspread.authorize(creds)
-        sheet = client.open("Pet Survey Responses").worksheet("English")
-        response_serialized = {k: str(v) if not isinstance(v, str) else v for k, v in response.items()}
-        sheet.append_row(list(response_serialized.values()))
-
-        st.success("✅ Thank you for your input! Your response has been recorded.")
+     # 👇 反机器人校验 + 重复提交检测（30秒冷却）
+    is_human = st.radio("Are you a robot?", ["No, I am human", "Yes, I am a robot"], index=0)
+    
+    if "last_submit_time" not in st.session_state:
+        st.session_state.last_submit_time = 0
+    
+    cooldown = 30  # cooldown in seconds
+    current_time = datetime.datetime.now().timestamp()
+    
+    if st.button("Submit Survey"):
+        if current_time - st.session_state.last_submit_time < cooldown:
+            st.warning("⚠️ Please do not submit multiple times in a short period. Try again later.")
+        elif is_human != "No, I am human":
+            st.error("❌ Please confirm you are not a robot.")
+        else:
+            st.session_state.last_submit_time = current_time
+    
+            platform_scores = ", ".join([f"{k}: {v}" for k, v in platform_ratings.items()])
+            response = {
+                "Timestamp": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                "Pet Type": other_pet,
+                "Number of Pets": num_pets,
+                "Current Apps": ", ".join(current_apps) + (f"; Other: {other_apps}" if other_apps else ""),
+                "Pain Points": ", ".join(pain_points) + (f"; Other: {other_pain}" if other_pain else ""),
+                "Interested Features": ", ".join(features_interest),
+                "Willingness to Pay": pay_willingness,
+                "Email": email,
+                "Age": age,
+                "City": location,
+                "Monthly Spend": monthly_spend,
+                "App Satisfaction Scores": platform_scores,
+                "Reminder Preference": notification_pref,
+                "Additional Feedback": open_feedback,
+                "Sharing Platforms": ", ".join(share_platforms),
+                "Content Interests": ", ".join(share_content_interest),
+                "Shopping Places": ", ".join(shopping_places),
+                "Paid for App": paid_before,
+                "Willing to Share Pet Content": share_interest,
+                "Magic Solution": magic_solution,
+                "App Usage Frequency": usage_freq,
+                "App Usage Scenarios": ", ".join(usage_scenarios)
+            }
+    
+            # ✅ 写入 Google Sheets 替代 CSV
+            scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
+            creds = Credentials.from_service_account_info(st.secrets["gcp_service_account"], scopes=scope)
+            client = gspread.authorize(creds)
+            sheet = client.open("Pet Survey Responses").worksheet("English")
+            response_serialized = {k: str(v) if not isinstance(v, str) else v for k, v in response.items()}
+            sheet.append_row(list(response_serialized.values()))
+    
+            st.success("✅ Thank you for your input! Your response has been recorded.")
         
     st.markdown(
         "<hr style='margin-top: 40px;'>"
