@@ -119,11 +119,12 @@ if st.button("Submit Survey"):
     }
 
     # ✅ 写入 Google Sheets 替代 CSV
+    import streamlit as st
     from google.oauth2.service_account import Credentials
     import gspread
 
     scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
-    creds = Credentials.from_service_account_file("pet-survey-writer.json", scopes=scope)
+    creds = Credentials.from_service_account_info(st.secrets["gcp_service_account"], scopes=scope)
     client = gspread.authorize(creds)
     sheet = client.open("Pet Survey Responses").worksheet("English")
     response_serialized = {k: str(v) if not isinstance(v, str) else v for k, v in response.items()}
@@ -245,12 +246,14 @@ if st.button("提交调查"):
     }
 
     # ✅ 替换为写入 Google Sheets 的代码
+    import streamlit as st
     from google.oauth2.service_account import Credentials
     import gspread
 
     scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
-    creds = Credentials.from_service_account_file("pet-survey-writer.json", scopes=scope)
+    creds = Credentials.from_service_account_info(st.secrets["gcp_service_account"], scopes=scope)
     client = gspread.authorize(creds)
+
     sheet = client.open("Pet Survey Responses").worksheet("中文")
     response_serialized = {k: str(v) if not isinstance(v, str) else v for k, v in response.items()}
     sheet.append_row(list(response_serialized.values()))
@@ -368,11 +371,12 @@ if st.button("Enviar encuesta"):
     }
 
     # ✅ Google Sheets 追加写入
+    import streamlit as st
     from google.oauth2.service_account import Credentials
     import gspread
 
     scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
-    creds = Credentials.from_service_account_file("pet-survey-writer.json", scopes=scope)
+    creds = Credentials.from_service_account_info(st.secrets["gcp_service_account"], scopes=scope)
     client = gspread.authorize(creds)
     sheet = client.open("Pet Survey Responses").worksheet("Español")
     response_serialized = {k: str(v) if not isinstance(v, str) else v for k, v in response.items()}
@@ -491,11 +495,12 @@ if st.button("Soumettre l'enquête"):
     }
 
     # ✅ Google Sheets 上传代码
+    import streamlit as st
     from google.oauth2.service_account import Credentials
     import gspread
 
     scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
-    creds = Credentials.from_service_account_file("pet-survey-writer.json", scopes=scope)
+    creds = Credentials.from_service_account_info(st.secrets["gcp_service_account"], scopes=scope)
     client = gspread.authorize(creds)
     sheet = client.open("Pet Survey Responses").worksheet("Français")
     response_serialized = {k: str(v) if not isinstance(v, str) else v for k, v in response.items()}
