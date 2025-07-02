@@ -73,7 +73,7 @@ if lang == "English":
     # Demographics and platform ratings
     age = st.selectbox("What is your age range?", ["Under 18", "18–24", "25–34", "35–44", "45–54", "55+"])
     location = st.text_input("Which city do you currently live in?")
-    monthly_spend = st.slider("How much do you spend monthly on your pet (food, vet, grooming, etc.)?", 0, 500, 50, step=10)
+    monthly_spend = st.slider("How much do you spend monthly on your pet (food, vet, grooming, etc.)?", 0, 1000, 50, step=10)
 
     selected_platforms = st.multiselect("Which platforms have you used? Rate them below:", ["Chewy", "Rover", "PetDesk", "Other"])
     platform_ratings = {}
@@ -186,7 +186,7 @@ elif lang == "中文":
 
     age = st.selectbox("您的年龄范围是？", ["18岁以下", "18–24岁", "25–34岁", "35–44岁", "45–54岁", "55岁以上"])
     location = st.text_input("您目前所在的城市是？")
-    monthly_spend = st.slider("您每月在宠物上的花费大约是多少？（美元）", 0, 500, 50, step=10)
+    monthly_spend = st.slider("您每月在宠物上的花费大约是多少？（美元）", 0, 1000, 50, step=10)
 
     selected_platforms = st.multiselect("您使用过哪些平台？请为它们评分：", ["Chewy", "Rover", "PetDesk", "其他"])
     platform_ratings = {}
@@ -300,7 +300,7 @@ elif lang == "Español":
 
     age = st.selectbox("¿Cuál es tu rango de edad?", ["Menos de 18", "18–24", "25–34", "35–44", "45–54", "55+"])
     location = st.text_input("¿En qué ciudad vives actualmente?")
-    monthly_spend = st.slider("¿Cuánto gastas mensualmente en tu mascota (comida, veterinario, grooming, etc.)?", 0, 500, 50, step=10)
+    monthly_spend = st.slider("¿Cuánto gastas mensualmente en tu mascota (comida, veterinario, grooming, etc.)?", 0, 1000, 50, step=10)
 
     selected_platforms = st.multiselect("¿Qué plataformas has utilizado? Califícalas abajo:", ["Chewy", "Rover", "PetDesk", "Otro"])
     platform_ratings = {}
@@ -413,7 +413,7 @@ elif lang == "Français":
 
     age = st.selectbox("Quel est votre groupe d'âge ?", ["Moins de 18 ans", "18–24 ans", "25–34 ans", "35–44 ans", "45–54 ans", "55+ ans"])
     location = st.text_input("Dans quelle ville habitez-vous actuellement ?")
-    monthly_spend = st.slider("Combien dépensez-vous par mois pour votre animal (nourriture, vétérinaire, toilettage, etc.) ?", 0, 500, 50, step=10)
+    monthly_spend = st.slider("Combien dépensez-vous par mois pour votre animal (nourriture, vétérinaire, toilettage, etc.) ?", 0, 1000, 50, step=10)
 
     selected_platforms = st.multiselect("Quelles plateformes avez-vous utilisées ? Évaluez-les ci-dessous :", ["Chewy", "Rover", "PetDesk", "Autre"])
     platform_ratings = {}
