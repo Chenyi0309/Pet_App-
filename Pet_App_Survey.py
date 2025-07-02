@@ -170,13 +170,13 @@ if lang == "English":
     
     
         st.success("✅ Thank you for your input! Your response has been recorded.")
-        st.markdown(
-            "<hr style='margin-top: 40px;'>"
-            "<div style='text-align: center; font-size: 12px; color: gray;'>"
-            "© 2025 PetCareApp | Your data will only be used for academic research and product development. We never share or resell it to any third parties."
-            "</div>",
-            unsafe_allow_html=True
-        )
+    st.markdown(
+        "<hr style='margin-top: 40px;'>"
+        "<div style='text-align: center; font-size: 12px; color: gray;'>"
+        "© 2025 PetCareApp | Your data will only be used for academic research and product development. We never share or resell it to any third parties."
+        "</div>",
+        unsafe_allow_html=True
+    )
 
 elif lang == "中文":
     st.title("🐾 宠物主人调研")
@@ -495,13 +495,13 @@ elif lang == "Español":
         sheet.append_row(list(response_serialized.values()))
     
         st.success("✅ ¡Gracias por tu participación! Tu respuesta ha sido registrada.")
-        st.markdown(
-            "<hr style='margin-top: 40px;'>"
-            "<div style='text-align: center; font-size: 12px; color: gray;'>"
-            "© 2025 PetCareApp | Tus datos solo se utilizarán para fines académicos y desarrollo del producto. Nunca los compartiremos ni venderemos a terceros."
-            "</div>",
-            unsafe_allow_html=True
-        )
+    st.markdown(
+        "<hr style='margin-top: 40px;'>"
+        "<div style='text-align: center; font-size: 12px; color: gray;'>"
+        "© 2025 PetCareApp | Tus datos solo se utilizarán para fines académicos y desarrollo del producto. Nunca los compartiremos ni venderemos a terceros."
+        "</div>",
+        unsafe_allow_html=True
+    )
 
 # --- French (Français) full survey ---
 elif lang == "Français":
@@ -657,11 +657,11 @@ elif lang == "Français":
         sheet.append_row(list(response_serialized.values()))
     
         st.success("✅ Merci pour votre participation ! Votre réponse a été enregistrée.")
-        st.markdown(
-            "<hr style='margin-top: 40px;'>"
-            "<div style='text-align: center; font-size: 12px; color: gray;'>"
-            "© 2025 PetCareApp | Vos données seront uniquement utilisées pour la recherche académique et le développement du produit. Elles ne seront jamais partagées ni revendues à des tiers."
-            "</div>",
-            unsafe_allow_html=True
-        )
+    st.markdown(
+        "<hr style='margin-top: 40px;'>"
+        "<div style='text-align: center; font-size: 12px; color: gray;'>"
+        "© 2025 PetCareApp | Vos données seront uniquement utilisées pour la recherche académique et le développement du produit. Elles ne seront jamais partagées ni revendues à des tiers."
+        "</div>",
+        unsafe_allow_html=True
+    )
 
