@@ -12,7 +12,7 @@ if lang == "English":
     st.markdown("""
     We are a small team working on creating a new app that helps pet owners manage their pets’ health, services, and social life all in one place.
     This short survey will help us understand your needs, so we can design a product that truly works for you.
-    Thank you for participating!
+    Thank you for participating! Your information will only be used for this product research survey and will not be shared or used for any other purposes.
     """)
 
     pet_type = st.radio("What kind of pet do you have?", ["Dog", "Cat", "Rabbit", "Bird", "Other"])
@@ -170,14 +170,20 @@ if lang == "English":
     
     
         st.success("✅ Thank you for your input! Your response has been recorded.")
-
+        st.markdown(
+            "<hr style='margin-top: 40px;'>"
+            "<div style='text-align: center; font-size: 12px; color: gray;'>"
+            "© 2025 PetCareApp | Your data will only be used for academic research and product development. We never share or resell it to any third parties."
+            "</div>",
+            unsafe_allow_html=True
+        )
 
 elif lang == "中文":
     st.title("🐾 宠物主人调研")
     st.markdown("""
     我们是一个正在开发宠物App的小团队，希望为宠物主人提供一站式的健康管理、服务对接和社交平台。
     这份简短的问卷将帮助我们更好地了解您的需求，以便我们打造出真正实用的产品。
-    感谢您的参与！
+    感谢您的参与！您的信息仅用于本次产品调研，不会公开或用于其他用途。
     """)
 
     pet_type = st.radio("您养的宠物种类是？", ["狗", "猫", "兔子", "鸟", "其他"])
@@ -327,13 +333,21 @@ elif lang == "中文":
     
         st.success("✅ 感谢您的参与，您的回答已记录！")
 
+    st.markdown(
+        "<hr style='margin-top: 40px;'>"
+        "<div style='text-align: center; font-size: 12px; color: gray;'>"
+        "© 2025 PetCareApp | 您的数据将仅用于学术研究和产品开发，我们不会将其分享或转售给任何第三方。"
+        "</div>",
+        unsafe_allow_html=True
+    )
+
 # --- Spanish (Español) full survey ---
 elif lang == "Español":
     st.title("🐾 Encuesta para dueños de mascotas")
     st.markdown("""
     Somos un pequeño equipo que está desarrollando una aplicación para ayudar a los dueños de mascotas a gestionar la salud, servicios y comunidad de sus mascotas desde un solo lugar.
     Esta breve encuesta nos permitirá conocer tus necesidades y diseñar una aplicación que realmente funcione para ti.
-    ¡Gracias por participar!
+    ¡Gracias por participar! Tu información solo se usará para esta encuesta de investigación del producto y no será compartida ni utilizada para otros fines.
     """)
 
     pet_type = st.radio("¿Qué tipo de mascota tienes?", ["Perro", "Gato", "Conejo", "Pájaro", "Otro"])
@@ -481,6 +495,13 @@ elif lang == "Español":
         sheet.append_row(list(response_serialized.values()))
     
         st.success("✅ ¡Gracias por tu participación! Tu respuesta ha sido registrada.")
+        st.markdown(
+            "<hr style='margin-top: 40px;'>"
+            "<div style='text-align: center; font-size: 12px; color: gray;'>"
+            "© 2025 PetCareApp | Tus datos solo se utilizarán para fines académicos y desarrollo del producto. Nunca los compartiremos ni venderemos a terceros."
+            "</div>",
+            unsafe_allow_html=True
+        )
 
 # --- French (Français) full survey ---
 elif lang == "Français":
@@ -488,7 +509,7 @@ elif lang == "Français":
     st.markdown("""
     Nous sommes une petite équipe en train de développer une application pour aider les propriétaires d’animaux à gérer la santé, les services et la vie sociale de leurs compagnons en un seul endroit.
     Ce court sondage nous aidera à mieux comprendre vos besoins pour concevoir une solution qui vous convient vraiment.
-    Merci pour votre participation !
+    Merci pour votre participation ! Vos informations seront utilisées uniquement pour cette enquête produit et ne seront pas partagées ni utilisées à d'autres fins.
     """)
 
     pet_type = st.radio("Quel type d'animal avez-vous ?", ["Chien", "Chat", "Lapin", "Oiseau", "Autre"])
@@ -636,3 +657,11 @@ elif lang == "Français":
         sheet.append_row(list(response_serialized.values()))
     
         st.success("✅ Merci pour votre participation ! Votre réponse a été enregistrée.")
+        st.markdown(
+            "<hr style='margin-top: 40px;'>"
+            "<div style='text-align: center; font-size: 12px; color: gray;'>"
+            "© 2025 PetCareApp | Vos données seront uniquement utilisées pour la recherche académique et le développement du produit. Elles ne seront jamais partagées ni revendues à des tiers."
+            "</div>",
+            unsafe_allow_html=True
+        )
+
