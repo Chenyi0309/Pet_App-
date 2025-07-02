@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
 import datetime
+import gspread
+from google.oauth2.service_account import Credentials
 
 # Language selection
 lang = st.selectbox("🌐 Choose your language / 选择语言 / Elija su idioma / Choisissez votre langue:", ["English", "中文", "Español", "Français"])
@@ -121,7 +123,7 @@ if st.button("Submit Survey"):
     from oauth2client.service_account import ServiceAccountCredentials
 
     scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-    creds = ServiceAccountCredentials.from_json_keyfile_name("pet-survey-writer.json", scope)
+    creds = Credentials.from_service_account_file("pet-survey-writer.json", scopes=scope)
     client = gspread.authorize(creds)
     sheet = client.open("Pet Survey Responses").worksheet("English")
     response_serialized = {k: str(v) if not isinstance(v, str) else v for k, v in response.items()}
@@ -247,7 +249,7 @@ if st.button("提交调查"):
     from oauth2client.service_account import ServiceAccountCredentials
 
     scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-    creds = ServiceAccountCredentials.from_json_keyfile_name("pet-survey-writer.json", scope)
+    creds = Credentials.from_service_account_file("pet-survey-writer.json", scopes=scope)
     client = gspread.authorize(creds)
     sheet = client.open("Pet Survey Responses").worksheet("中文")
     response_serialized = {k: str(v) if not isinstance(v, str) else v for k, v in response.items()}
@@ -370,7 +372,7 @@ if st.button("Enviar encuesta"):
     from oauth2client.service_account import ServiceAccountCredentials
 
     scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-    creds = ServiceAccountCredentials.from_json_keyfile_name("pet-survey-writer.json", scope)
+    creds = Credentials.from_service_account_file("pet-survey-writer.json", scopes=scope)
     client = gspread.authorize(creds)
     sheet = client.open("Pet Survey Responses").worksheet("Español")
     response_serialized = {k: str(v) if not isinstance(v, str) else v for k, v in response.items()}
@@ -493,7 +495,7 @@ if st.button("Soumettre l'enquête"):
     from oauth2client.service_account import ServiceAccountCredentials
 
     scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-    creds = ServiceAccountCredentials.from_json_keyfile_name("pet-survey-writer.json", scope)
+    creds = Credentials.from_service_account_file("pet-survey-writer.json", scopes=scope)
     client = gspread.authorize(creds)
     sheet = client.open("Pet Survey Responses").worksheet("Français")
     response_serialized = {k: str(v) if not isinstance(v, str) else v for k, v in response.items()}
