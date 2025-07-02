@@ -56,21 +56,59 @@ if lang == "English":
             "Local pet services (grooming, sitting, walking)",
             "Pet community and sharing photos",
             "Pet product recommendations & shopping",
-            "Event organization (pet meetups, competitions)"
+            "Event organization (pet meetups, competitions)",
+            "Other"
         ]
     )
+    if "Other" in features_interest:
+        other_feature = st.text_input("Please describe other features you'd like:")
+        features_interest = [f for f in features_interest if f != "Other"] + [f"Other: {other_feature}"]
+
     pay_willingness = st.slider("How much would you be willing to pay monthly for a well-designed pet care app with the features above?", 0, 20, 0, step=1, key="pay_slider_en")
 
     # Additional questions
-    share_platforms = st.multiselect("Which platforms do you normally use to share pet-related content?", ["Instagram", "TikTok", "Facebook", "Reddit", "YouTube", "WeChat",  "RedNote", "Other"])
-    share_content_interest = st.multiselect("What kind of content would you like to see or follow on those platforms?", ["Pet care tips", "Funny videos", "Pet product reviews", "Health updates", "Pet training", "Pet community events", "Other"])
+    share_platforms = st.multiselect(
+        "Which platforms do you normally use to share pet-related content?",
+        ["Instagram", "TikTok", "Facebook", "Reddit", "YouTube", "WeChat", "RedNote", "Other"]
+    )
+    if "Other" in share_platforms:
+        other_share_platform = st.text_input("Please name the other sharing platform:")
+        share_platforms = [p for p in share_platforms if p != "Other"] + [f"Other: {other_share_platform}"]
+    share_content_interest = st.multiselect(
+        "What kind of content would you like to see or follow on those platforms?",
+        ["Pet care tips", "Funny videos", "Pet product reviews", "Health updates", "Pet training", "Pet community events", "Other"]
+    )
+    if "Other" in share_content_interest:
+        other_content_type = st.text_input("Please describe other content you'd like to see:")
+        share_content_interest = [c for c in share_content_interest if c != "Other"] + [f"Other: {other_content_type}"]
 
-    shopping_places = st.multiselect("Where do you usually shop for your pet's needs?", ["PetSmart", "Chewy", "Amazon", "Walmart", "Local pet stores", "Vet office", "Petco", "Pet Supplies", "Other"])
+    shopping_places = st.multiselect(
+        "Where do you usually shop for your pet's needs?",
+        ["PetSmart", "Chewy", "Amazon", "Walmart", "Local pet stores", "Vet office", "Petco", "Pet Supplies", "Other"]
+    )
+    if "Other" in shopping_places:
+        other_shopping_place = st.text_input("Please specify other shopping place:")
+        shopping_places = [s for s in shopping_places if s != "Other"] + [f"Other: {other_shopping_place}"]
+
     paid_before = st.radio("Have you ever paid for a pet-related app or subscription?", ["Yes", "No"])
     share_interest = st.radio("Would you like to share pictures or updates about your pet with other pet owners?", ["Yes", "No", "Maybe"])
     magic_solution = st.text_input("If you could magically solve one pet-related problem with an app, what would it be?")
     usage_freq = st.radio("How often do you expect to use a pet care app?", ["Daily", "A few times a week", "Weekly", "Only when needed"])
-    usage_scenarios = st.multiselect("In which situations would you most likely use a pet app?", ["Emergency help", "Regular checkups and tracking", "Shopping for food, toys, or medicine", "Social interaction (photos, events, communities)", "Travel planning with pets", "Help feeding or walking pet when away / Pet sitting"])
+    usage_scenarios = st.multiselect(
+        "In which situations would you most likely use a pet app?",
+        [
+            "Emergency help",
+            "Regular checkups and tracking",
+            "Shopping for food, toys, or medicine",
+            "Social interaction (photos, events, communities)",
+            "Travel planning with pets",
+            "Help feeding or walking pet when away / Pet sitting",
+            "Other"
+        ]
+    )
+    if "Other" in usage_scenarios:
+        other_usage_scenario = st.text_input("Please describe the other scenario you'd use a pet app for:")
+        usage_scenarios = [u for u in usage_scenarios if u != "Other"] + [f"Other: {other_usage_scenario}"]
 
     # Demographics and platform ratings
     age = st.selectbox("What is your age range?", ["Under 18", "18–24", "25–34", "35–44", "45–54", "55+"])
@@ -183,21 +221,50 @@ elif lang == "中文":
             "本地宠物服务预约（洗护、寄养、遛狗）",
             "宠物社区与分享",
             "宠物商品推荐与购买",
-            "组织活动（线下聚会、比赛等）"
+            "组织活动（线下聚会、比赛等）",
+            "其他"
         ]
     )
+    if "其他" in features_interest:
+        other_feature = st.text_input("请填写您希望的其他功能：")
+        features_interest = [f for f in features_interest if f != "其他"] + [f"其他：{other_feature}"]
+
     pay_willingness = st.slider("如果这些功能都很好，您每月最多愿意支付多少钱？（单位：美元）", 0, 20, 0, step=1)
 
     # 新增问题
-    share_platforms = st.multiselect("您通常在哪些平台上分享宠物相关内容？", ["Instagram", "TikTok", "Facebook", "Reddit", "YouTube", "微信", "小红书", "其他"])
-    share_content_interest = st.multiselect("您希望在这些平台上看到或关注哪些内容？", ["宠物护理小贴士", "搞笑视频", "宠物产品测评", "健康更新", "宠物训练", "宠物社区活动", "其他"])
+    share_platforms = st.multiselect(
+        "您通常在哪些平台上分享宠物相关内容？",
+        ["Instagram", "TikTok", "Facebook", "Reddit", "YouTube", "微信", "小红书", "其他"]
+    )
+    if "其他" in share_platforms:
+        other_share_platform = st.text_input("请填写其他分享平台：")
+        share_platforms = [p for p in share_platforms if p != "其他"] + [f"其他：{other_share_platform}"]
+    share_content_interest = st.multiselect(
+        "您希望在这些平台上看到或关注哪些内容？",
+        ["宠物护理小贴士", "搞笑视频", "宠物产品测评", "健康更新", "宠物训练", "宠物社区活动", "其他"]
+    )
+    if "其他" in share_content_interest:
+        other_content_type = st.text_input("请填写您希望看到的其他内容：")
+        share_content_interest = [c for c in share_content_interest if c != "其他"] + [f"其他：{other_content_type}"]
 
-    shopping_places = st.multiselect("您通常在哪里买宠物相关用品？", ["PetSmart", "Chewy", "Amazon", "Walmart", "Petco", "Pet Supplies", "本地宠物店", "兽医诊所", "其他"])
+    shopping_places = st.multiselect(
+        "您通常在哪里买宠物相关用品？",
+        ["PetSmart", "Chewy", "Amazon", "Walmart", "Petco", "Pet Supplies", "本地宠物店", "兽医诊所", "其他"]
+    )
+    if "其他" in shopping_places:
+        other_shopping_place = st.text_input("请填写其他购物地点：")
+        shopping_places = [s for s in shopping_places if s != "其他"] + [f"其他：{other_shopping_place}"]
     paid_before = st.radio("您是否曾为宠物相关App或订阅服务付费？", ["是", "否"])
     share_interest = st.radio("您是否愿意与其他宠物主人分享宠物的照片或动态？", ["愿意", "不愿意", "看情况"])
     magic_solution = st.text_input("如果可以用一个App神奇地解决一个与宠物相关的问题，您希望解决什么？")
     usage_freq = st.radio("您希望多频繁使用宠物App？", ["每天", "每周几次", "每周一次", "仅在需要时"])
-    usage_scenarios = st.multiselect("您最可能在哪些场景中使用宠物App？", ["紧急求助", "日常健康记录", "购物（食品/玩具/药品）", "社交互动（照片、活动、社区）", "出行安排", "外出时帮忙喂猫/遛狗/临时寄养"])
+    usage_scenarios = st.multiselect(
+        "您最可能在哪些场景中使用宠物App？",
+        ["紧急求助", "日常健康记录", "购物（食品/玩具/药品）", "社交互动（照片、活动、社区）", "出行安排", "外出时帮忙喂猫/遛狗/临时寄养", "其他"]
+    )
+    if "其他" in usage_scenarios:
+        other_usage_scenario = st.text_input("请填写其他使用场景：")
+        usage_scenarios = [u for u in usage_scenarios if u != "其他"] + [f"其他：{other_usage_scenario}"]
 
     age = st.selectbox("您的年龄范围是？", ["18岁以下", "18–24岁", "25–34岁", "35–44岁", "45–54岁", "55岁以上"])
     location = st.text_input("您目前所在的城市是？")
@@ -300,7 +367,6 @@ elif lang == "Español":
         other_pain = st.text_input("Por favor describe otros puntos de dolor:")
     else:
         other_pain = ""
-
     features_interest = st.multiselect(
         "¿Qué funciones te gustaría ver en una app para cuidado de mascotas?",
         [
@@ -310,20 +376,52 @@ elif lang == "Español":
             "Servicios locales para mascotas (peluquería, cuidado, paseo)",
             "Comunidad de mascotas y compartir fotos",
             "Recomendaciones y compras de productos",
-            "Organización de eventos (encuentros, competencias)"
+            "Organización de eventos (encuentros, competencias)",
+            "Otro"
         ]
     )
+    if "Otro" in features_interest:
+        other_feature = st.text_input("Por favor especifica otras funciones que te gustaría ver:")
+        features_interest = [f for f in features_interest if f != "Otro"] + [f"Otro: {other_feature}"]
+
     pay_willingness = st.slider("¿Cuánto estarías dispuesto a pagar al mes por una app bien diseñada con las funciones anteriores?", 0, 20, 0, step=1)
 
     # Nuevas preguntas
-    share_platforms = st.multiselect("¿En qué plataformas sueles compartir contenido relacionado con mascotas?", ["Instagram", "TikTok", "Facebook", "Reddit", "YouTube", "WeChat", "RedNote", "Otro"])
-    share_content_interest = st.multiselect("¿Qué tipo de contenido te gustaría ver o seguir en esas plataformas?", ["Consejos de cuidado", "Videos graciosos", "Reseñas de productos", "Actualizaciones de salud", "Entrenamiento de mascotas", "Eventos comunitarios de mascotas", "Otro"])
-    shopping_places = st.multiselect("¿Dónde sueles comprar cosas para tu mascota?", ["PetSmart", "Chewy", "Amazon", "Walmart", "Tiendas locales", "Clínica veterinaria", "Petco", "Pet Supplies", "Otro"])
+    share_platforms = st.multiselect(
+        "¿En qué plataformas sueles compartir contenido relacionado con mascotas?",
+        ["Instagram", "TikTok", "Facebook", "Reddit", "YouTube", "WeChat", "RedNote", "Otro"]
+    )
+    if "Otro" in share_platforms:
+        other_share_platform = st.text_input("Por favor especifica otra plataforma:")
+        share_platforms = [p for p in share_platforms if p != "Otro"] + [f"Otro: {other_share_platform}"]
+    
+    share_content_interest = st.multiselect(
+        "¿Qué tipo de contenido te gustaría ver o seguir en esas plataformas?",
+        ["Consejos de cuidado", "Videos graciosos", "Reseñas de productos", "Actualizaciones de salud", "Entrenamiento de mascotas", "Eventos comunitarios de mascotas", "Otro"]
+    )
+    if "Otro" in share_content_interest:
+        other_content_type = st.text_input("Por favor especifica otro tipo de contenido:")
+        share_content_interest = [c for c in share_content_interest if c != "Otro"] + [f"Otro: {other_content_type}"]
+
+    shopping_places = st.multiselect(
+        "¿Dónde sueles comprar cosas para tu mascota?",
+        ["PetSmart", "Chewy", "Amazon", "Walmart", "Tiendas locales", "Clínica veterinaria", "Petco", "Pet Supplies", "Otro"]
+    )
+    if "Otro" in shopping_places:
+        other_shopping_place = st.text_input("Por favor especifica otro lugar de compra:")
+        shopping_places = [s for s in shopping_places if s != "Otro"] + [f"Otro: {other_shopping_place}"]
+
     paid_before = st.radio("¿Alguna vez has pagado por una app o suscripción relacionada con mascotas?", ["Sí", "No"])
     share_interest = st.radio("¿Te gustaría compartir fotos o actualizaciones de tu mascota con otros dueños?", ["Sí", "No", "Tal vez"])
     magic_solution = st.text_input("Si pudieras resolver mágicamente un problema relacionado con tu mascota mediante una app, ¿cuál sería?")
     usage_freq = st.radio("¿Con qué frecuencia usarías una app de cuidado de mascotas?", ["Diariamente", "Varias veces a la semana", "Semanalmente", "Solo cuando sea necesario"])
-    usage_scenarios = st.multiselect("¿En qué situaciones usarías más probablemente una app para mascotas?", ["Emergencias", "Seguimiento y chequeos regulares", "Compras (comida, juguetes, medicina)", "Interacción social (fotos, eventos, comunidades)", "Planeación de viajes con mascotas", "Ayuda para alimentar/pasear mascotas o cuidado temporal durante viajes"])
+    usage_scenarios = st.multiselect(
+        "¿En qué situaciones usarías más probablemente una app para mascotas?",
+        ["Emergencias", "Seguimiento y chequeos regulares", "Compras (comida, juguetes, medicina)", "Interacción social (fotos, eventos, comunidades)", "Planeación de viajes con mascotas", "Ayuda para alimentar/pasear mascotas o cuidado temporal durante viajes", "Otro"]
+    )
+    if "Otro" in usage_scenarios:
+        other_usage = st.text_input("Por favor especifica otro escenario de uso:")
+        usage_scenarios = [u for u in usage_scenarios if u != "Otro"] + [f"Otro: {other_usage}"]
 
     age = st.selectbox("¿Cuál es tu rango de edad?", ["Menos de 18", "18–24", "25–34", "35–44", "45–54", "55+"])
     location = st.text_input("¿En qué ciudad vives actualmente?")
@@ -434,20 +532,51 @@ elif lang == "Français":
             "Services locaux pour animaux (toilettage, garde, promenade)",
             "Communauté et partage de photos",
             "Recommandations de produits et achats",
-            "Organisation d'événements (rencontres, concours)"
+            "Organisation d'événements (rencontres, concours)",
+            "Autre"
         ]
     )
+    if "Autre" in features_interest:
+        other_feature = st.text_input("Veuillez spécifier d'autres fonctionnalités souhaitées :")
+        features_interest = [f for f in features_interest if f != "Autre"] + [f"Autre: {other_feature}"]
+
     pay_willingness = st.slider("Combien seriez-vous prêt à payer par mois pour une application bien conçue avec les fonctionnalités ci-dessus ?", 0, 20, 0, step=1)
 
     # Nouvelles questions
-    share_platforms = st.multiselect("Sur quelles plateformes partagez-vous généralement du contenu lié aux animaux ?", ["Instagram", "TikTok", "Facebook", "Reddit", "YouTube", "WeChat", "RedNote", "Autre"])
-    share_content_interest = st.multiselect("Quel type de contenu souhaitez-vous voir ou suivre sur ces plateformes ?", ["Conseils de soins", "Vidéos amusantes", "Avis sur des produits", "Mises à jour de santé", "Dressage", "Événements communautaires pour animaux", "Autre"])
-    shopping_places = st.multiselect("Où achetez-vous habituellement les produits pour votre animal ?", ["PetSmart", "Chewy", "Amazon", "Walmart", "Petco", "Pet Supplies", "Magasins locaux", "Cabinet vétérinaire", "Autre"])
+    share_platforms = st.multiselect(
+        "Sur quelles plateformes partagez-vous généralement du contenu lié aux animaux ?",
+        ["Instagram", "TikTok", "Facebook", "Reddit", "YouTube", "WeChat", "RedNote", "Autre"]
+    )
+    if "Autre" in share_platforms:
+        other_share_platform = st.text_input("Veuillez spécifier une autre plateforme :")
+        share_platforms = [p for p in share_platforms if p != "Autre"] + [f"Autre: {other_share_platform}"]
+    share_content_interest = st.multiselect(
+        "Quel type de contenu souhaitez-vous voir ou suivre sur ces plateformes ?",
+        ["Conseils de soins", "Vidéos amusantes", "Avis sur des produits", "Mises à jour de santé", "Dressage", "Événements communautaires pour animaux", "Autre"]
+    )
+    if "Autre" in share_content_interest:
+        other_content_type = st.text_input("Veuillez spécifier un autre type de contenu :")
+        share_content_interest = [c for c in share_content_interest if c != "Autre"] + [f"Autre: {other_content_type}"]
+    
+    shopping_places = st.multiselect(
+        "Où achetez-vous habituellement les produits pour votre animal ?",
+        ["PetSmart", "Chewy", "Amazon", "Walmart", "Petco", "Pet Supplies", "Magasins locaux", "Cabinet vétérinaire", "Autre"]
+    )
+    if "Autre" in shopping_places:
+        other_shopping_place = st.text_input("Veuillez spécifier un autre lieu d'achat :")
+        shopping_places = [s for s in shopping_places if s != "Autre"] + [f"Autre: {other_shopping_place}"]
+
     paid_before = st.radio("Avez-vous déjà payé pour une application ou un abonnement lié aux animaux ?", ["Oui", "Non"])
     share_interest = st.radio("Souhaitez-vous partager des photos ou des mises à jour de votre animal avec d'autres propriétaires ?", ["Oui", "Non", "Peut-être"])
     magic_solution = st.text_input("Si une application pouvait magiquement résoudre un problème lié à votre animal, lequel serait-ce ?")
     usage_freq = st.radio("À quelle fréquence pensez-vous utiliser une application de soins pour animaux ?", ["Tous les jours", "Quelques fois par semaine", "Chaque semaine", "Uniquement en cas de besoin"])
-    usage_scenarios = st.multiselect("Dans quelles situations seriez-vous le plus susceptible d'utiliser une application pour animaux ?", ["Urgences", "Suivi et contrôles réguliers", "Achats (nourriture, jouets, médicaments)", "Interaction sociale (photos, événements, communauté)", "Planification de voyages avec des animaux", "Aide pour nourrir/promener/garder l’animal pendant les voyages"])
+    usage_scenarios = st.multiselect(
+        "Dans quelles situations seriez-vous le plus susceptible d'utiliser une application pour animaux ?",
+        ["Urgences", "Suivi et contrôles réguliers", "Achats (nourriture, jouets, médicaments)", "Interaction sociale (photos, événements, communauté)", "Planification de voyages avec des animaux", "Aide pour nourrir/promener/garder l’animal pendant les voyages", "Autre"]
+    )
+    if "Autre" in usage_scenarios:
+        other_usage = st.text_input("Veuillez spécifier un autre scénario d'utilisation :")
+        usage_scenarios = [u for u in usage_scenarios if u != "Autre"] + [f"Autre: {other_usage}"]
 
     age = st.selectbox("Quel est votre groupe d'âge ?", ["Moins de 18 ans", "18–24 ans", "25–34 ans", "35–44 ans", "45–54 ans", "55+ ans"])
     location = st.text_input("Dans quelle ville habitez-vous actuellement ?")
