@@ -124,7 +124,9 @@ if st.button("Submit Survey"):
     creds = ServiceAccountCredentials.from_json_keyfile_name("pet-survey-writer.json", scope)
     client = gspread.authorize(creds)
     sheet = client.open("Pet Survey Responses").worksheet("English")
-    sheet.append_row(list(response.values()))
+    response_serialized = {k: str(v) if not isinstance(v, str) else v for k, v in response.items()}
+    sheet.append_row(list(response_serialized.values()))
+
 
     st.success("✅ Thank you for your input! Your response has been recorded.")
 
@@ -248,7 +250,8 @@ if st.button("提交调查"):
     creds = ServiceAccountCredentials.from_json_keyfile_name("pet-survey-writer.json", scope)
     client = gspread.authorize(creds)
     sheet = client.open("Pet Survey Responses").worksheet("中文")
-    sheet.append_row(list(response.values()))
+    response_serialized = {k: str(v) if not isinstance(v, str) else v for k, v in response.items()}
+    sheet.append_row(list(response_serialized.values()))
 
     st.success("✅ 感谢您的参与，您的回答已记录！")
 
@@ -370,7 +373,8 @@ if st.button("Enviar encuesta"):
     creds = ServiceAccountCredentials.from_json_keyfile_name("pet-survey-writer.json", scope)
     client = gspread.authorize(creds)
     sheet = client.open("Pet Survey Responses").worksheet("Español")
-    sheet.append_row(list(response.values()))
+    response_serialized = {k: str(v) if not isinstance(v, str) else v for k, v in response.items()}
+    sheet.append_row(list(response_serialized.values()))
 
     st.success("✅ ¡Gracias por tu participación! Tu respuesta ha sido registrada.")
 
@@ -492,6 +496,7 @@ if st.button("Soumettre l'enquête"):
     creds = ServiceAccountCredentials.from_json_keyfile_name("pet-survey-writer.json", scope)
     client = gspread.authorize(creds)
     sheet = client.open("Pet Survey Responses").worksheet("Français")
-    sheet.append_row(list(response.values()))
+    response_serialized = {k: str(v) if not isinstance(v, str) else v for k, v in response.items()}
+    sheet.append_row(list(response_serialized.values()))
 
     st.success("✅ Merci pour votre participation ! Votre réponse a été enregistrée.")
