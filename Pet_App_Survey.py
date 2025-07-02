@@ -92,7 +92,7 @@ if lang == "English":
 if st.button("Submit Survey"):
     platform_scores = ", ".join([f"{k}: {v}" for k, v in platform_ratings.items()])
     response = {
-        "Timestamp": datetime.datetime.now(),
+        "Timestamp": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "Pet Type": other_pet,
         "Number of Pets": num_pets,
         "Current Apps": ", ".join(current_apps) + (f"; Other: {other_apps}" if other_apps else ""),
@@ -216,7 +216,7 @@ elif lang == "中文":
 if st.button("提交调查"):
     platform_scores = ", ".join([f"{k}: {v}" for k, v in platform_ratings.items()])
     response = {
-        "时间戳": datetime.datetime.now(),
+        "时间戳": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "宠物类型": other_pet,
         "宠物数量": num_pets,
         "当前使用的App": ", ".join(current_apps) + (f"；其他：{other_apps}" if other_apps else ""),
@@ -338,7 +338,7 @@ elif lang == "Español":
 if st.button("Enviar encuesta"):
     platform_scores = ", ".join([f"{k}: {v}" for k, v in platform_ratings.items()])
     response = {
-        "Marca de tiempo": datetime.datetime.now(),
+        "Marca de tiempo": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "Tipo de mascota": other_pet,
         "Número de mascotas": num_pets,
         "Apps actuales": ", ".join(current_apps) + (f"; Otro: {other_apps}" if other_apps else ""),
@@ -460,7 +460,7 @@ elif lang == "Français":
 if st.button("Soumettre l'enquête"):
     platform_scores = ", ".join([f"{k}: {v}" for k, v in platform_ratings.items()])
     response = {
-        "Horodatage": datetime.datetime.now(),
+        "Horodatage": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "Type d'animal": other_pet,
         "Nombre d'animaux": num_pets,
         "Applications utilisées": ", ".join(current_apps) + (f"; Autre: {other_apps}" if other_apps else ""),
