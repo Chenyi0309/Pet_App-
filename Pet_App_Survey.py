@@ -119,10 +119,10 @@ if st.button("Submit Survey"):
     }
 
     # ✅ 写入 Google Sheets 替代 CSV
+    from google.oauth2.service_account import Credentials
     import gspread
-    from oauth2client.service_account import ServiceAccountCredentials
 
-    scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+    scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
     creds = Credentials.from_service_account_file("pet-survey-writer.json", scopes=scope)
     client = gspread.authorize(creds)
     sheet = client.open("Pet Survey Responses").worksheet("English")
@@ -245,10 +245,10 @@ if st.button("提交调查"):
     }
 
     # ✅ 替换为写入 Google Sheets 的代码
+    from google.oauth2.service_account import Credentials
     import gspread
-    from oauth2client.service_account import ServiceAccountCredentials
 
-    scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+    scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
     creds = Credentials.from_service_account_file("pet-survey-writer.json", scopes=scope)
     client = gspread.authorize(creds)
     sheet = client.open("Pet Survey Responses").worksheet("中文")
@@ -368,10 +368,10 @@ if st.button("Enviar encuesta"):
     }
 
     # ✅ Google Sheets 追加写入
+    from google.oauth2.service_account import Credentials
     import gspread
-    from oauth2client.service_account import ServiceAccountCredentials
 
-    scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+    scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
     creds = Credentials.from_service_account_file("pet-survey-writer.json", scopes=scope)
     client = gspread.authorize(creds)
     sheet = client.open("Pet Survey Responses").worksheet("Español")
@@ -491,10 +491,10 @@ if st.button("Soumettre l'enquête"):
     }
 
     # ✅ Google Sheets 上传代码
+    from google.oauth2.service_account import Credentials
     import gspread
-    from oauth2client.service_account import ServiceAccountCredentials
 
-    scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+    scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
     creds = Credentials.from_service_account_file("pet-survey-writer.json", scopes=scope)
     client = gspread.authorize(creds)
     sheet = client.open("Pet Survey Responses").worksheet("Français")
